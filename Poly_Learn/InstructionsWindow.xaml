@@ -1,0 +1,310 @@
+﻿<Window x:Class="InstructionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Poly_Learn"
+        mc:Ignorable="d"
+        Title="Setup" Height="480" Width="800" MinHeight="480" MinWidth="800" BorderBrush="Black" BorderThickness="2" AllowsTransparency="True" WindowStyle="None">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+		<Grid x:Name="grdControls">
+		<StackPanel x:Name="stkControls" HorizontalAlignment="Stretch" FlowDirection="RightToLeft" Orientation="Horizontal">
+			<Button x:Name="btnClose" Content="X" FontWeight="Bold" Width="{Binding ElementName=btnMinimize, Path=ActualHeight}"/>
+			<Button x:Name="btnRestore" Width="{Binding ElementName=btnMinimize, Path=ActualHeight}"/>
+			<Button x:Name="btnMinimize" Content="_" FontWeight="Bold" Width="{Binding ElementName=btnMinimize, Path=ActualHeight}"/>
+		</StackPanel>
+		</Grid>
+		<Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+            <TreeView x:Name="tvwhelp" HorizontalAlignment="Stretch" FontSize="15">
+                <TreeViewItem Header="Demo Setup" IsSelected="True">
+                    <TreeViewItem Header="Pickup Tools" />
+                    <TreeViewItem Header="Apodius Demo" />
+                    <TreeViewItem Header="Move Around" />
+                    <TreeViewItem Header="Compressor"  />
+                    <TreeViewItem Header="Yoke" />
+                </TreeViewItem>
+                <TreeViewItem Header="Trouble Shooting">
+                    <TreeViewItem Header="Disconnected"/>
+                    <TreeViewItem Header="Manual Mode"/>
+                    <TreeViewItem Header="Motors Off"/>
+                </TreeViewItem>
+            </TreeView>
+
+            <Grid x:Name="Grd1" Grid.Column="1" Visibility="Visible">
+                <StackPanel>
+                    <TextBlock FontSize="15" Text="This is menu is meant to show you how to set up for each demo, by no means does it supply everything to know about MRAM." TextWrapping="Wrap"/>
+					<TextBlock FontSize="15" Text="If there is any reason to think the cell is not safe to run, contact someone who can verify the state of the cell" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Grid>
+			<Grid x:Name="Grd2" Grid.Column="1" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+				<TextBlock FontSize="15" Text="This is the demo requires a tool be be on each tool hanger, but it does not matter which tool, they robots do not use them for anything." Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Ping">
+                <UniformGrid Rows="1" >
+                    <Image Source="/Setup Images\Ping Gripper.jpg"/>
+						<TextBlock FontSize="15" TextWrapping="Wrap" Text="Ping requires one tool on the lower half of the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="1" Header="Pong">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Pong Gripper.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Pong requires one tool on the upper half of the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="2" Header="Tick">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Tick Weld.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Ping requires one tool next to the extruder head on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="2" Header="Tock">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Tock Drill.jpg"/>
+                    <Image Source="/Setup Images\Tock Camera.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Tock requires two tools on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="3" Header="Razzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Razzle should be in the upper middle section of the cell without a tool" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="3" Header="Dazzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Dazzle should be in the upper middle section of the cell without a tool" />
+                </UniformGrid>
+            </GroupBox>
+        </Grid>
+            <Grid x:Name="Grd3" Grid.Column="1" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  FontSize="15" Text="This demo is used to show off the apodius absolute camera, and requires the apodius camera, the tracker, and the part to be inspected." Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Ping">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\ToolDefault.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Ping requires the Apodius camera to be on the lower half of the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="1" Header="Pong">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\ToolDefault.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Pong requires the T-Scan5 to be set up on the tool rack on it's side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="2" Header="Tick">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Ping Gripper.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Tick requires a two finger gripper on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="2" Header="Tock">
+                <UniformGrid Rows="1">
+						<Image Source="/Setup Images\Ping Gripper.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Tock requires a two finger gripper on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="3" Header="Razzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Razzle should be in the upper middle section of the cell without a tool" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="3" Header="Dazzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Dazzle should be in the upper middle section of the cell without a tool" />
+                </UniformGrid>
+            </GroupBox>
+        </Grid>
+            <Grid x:Name="Grd4" Grid.Column="1" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  FontSize="15" Text="This demo is meant to be used when the robot is not prepared to pick tools or move the track" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Ping">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is needed on Ping" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="1" Header="Pong">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is needed on Pong" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="2" Header="Tick">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is needed on Tick" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="2" Header="Tock">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is needed on Tock" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="3" Header="Razzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is needed on Razzle" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="3" Header="Dazzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is needed on Dazzle" />
+                </UniformGrid>
+            </GroupBox>
+        </Grid>
+            <Grid x:Name="Grd5" Grid.Column="1" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  FontSize="15" Text="This demo was made for Deloitte to inspect a compressor that was hand assembled" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Ping">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\ToolDefault.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Ping requires the compressor lifting tool on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="1" Header="Pong">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Tock Camera.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Pong requires the camera to be on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="2" Header="Tick">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is required for Tick" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="2" Header="Tock">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is required for Tock" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="3" Header="Razzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is required for Razzle" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="3" Header="Dazzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="No tool is required for Dazzle" />
+                </UniformGrid>
+            </GroupBox>
+        </Grid>
+            <Grid x:Name="Grd6" Grid.Column="1" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  FontSize="15" Text="This is the demo we run for Deolitte tours, this does require external equipment and relies on a camera being set up on Tock" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Ping">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Ping Gripper.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Ping requires the two two finger gripper on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="1" Header="Pong">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Pong Gripper.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Pong requires the two finger gripper on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="2" Header="Tick">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Tick Weld.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Tick requires the weld gun on the tool rack on its side of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="2" Header="Tock">
+                <UniformGrid Rows="1">
+                    <Image Source="/Setup Images\Tock Camera.jpg"/>
+                    <Image Source="/Setup Images\Tock Drill.jpg"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Tock requires the camera on the left side of the tool rack, and the drill on the right side" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="3" Header="Razzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Razzle requires no tool, and should be in the upper center part of the cell" />
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Grid.Row="3" Header="Dazzle">
+                <UniformGrid Rows="1">
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Razzle requires no tool, and should be in the upper center part of the cell" />
+                </UniformGrid>
+            </GroupBox>
+        </Grid>
+            <Grid x:Name="Grd7" Grid.Column="1" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="This section is meant to try and help the user through some basic troubleshooting methods"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Use this if the start button does not become green on the program and the Cell status circle is not green"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Open the status tab on the program to observe what may be wrong with the program"/>
+                </StackPanel>
+        </Grid>
+            <Grid x:Name="Grd8" Grid.Column="1" Visibility="Collapsed">
+                <StackPanel>
+					<TextBlock  FontSize="15" TextWrapping="Wrap" Text="If the robots are disconnected on the status page, this may be due to the following reasons"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="The robot is not turned on-Turn the robot on"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="The NIAR network is not connected to the computer you are on-Enable the network on the computer"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="The robot has not been assigned an IP Address-Restart the controller and check the switch"/>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="Grd9" Grid.Column="1" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Make sure the key is flipped to auto mode"/>
+					<Image Source="/Setup Images\Motors.jpg" Width="200"/>
+					<TextBlock  FontSize="15" TextWrapping="Wrap" Text="Acknowledge the messages on the teachpendants of the robots"/>
+                </StackPanel>
+        </Grid>
+            <Grid x:Name="Grd10" Grid.Column="1" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock  FontSize="15" TextWrapping="Wrap" Text="Press the motors on button on the robot"/>
+					<Image Source="/Setup Images\Motors.jpg" Width="200"/>
+				</StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
