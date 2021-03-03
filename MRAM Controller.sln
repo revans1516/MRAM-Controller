@@ -7,8 +7,6 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MRAM Demo Program", "Poly_L
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PolyLib", "PolyLib\PolyLib.vbproj", "{33B53394-8BA1-4C93-A74C-A45C7D28FD8D}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "3D Path Planner", "3D Path Planner\3D Path Planner.vbproj", "{92B41EF1-706C-4E69-9D11-9C933D0A17A6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{33B53394-8BA1-4C93-A74C-A45C7D28FD8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33B53394-8BA1-4C93-A74C-A45C7D28FD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33B53394-8BA1-4C93-A74C-A45C7D28FD8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92B41EF1-706C-4E69-9D11-9C933D0A17A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92B41EF1-706C-4E69-9D11-9C933D0A17A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92B41EF1-706C-4E69-9D11-9C933D0A17A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92B41EF1-706C-4E69-9D11-9C933D0A17A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

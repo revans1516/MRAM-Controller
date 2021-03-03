@@ -140,7 +140,7 @@
                         </StackPanel>
                     </Viewbox>
                 </TabItem.Header>
-                <Button x:Name="btn3d" Content="Launch software" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button x:Name="btn3d" Content="Select Print" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
 
             </TabItem>
