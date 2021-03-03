@@ -860,4 +860,12 @@ Class MainWindow
     Private Sub btn3d_Click() Handles btn3d.Click
 
     End Sub
+
+    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+        Dim PrintBrowser As New Microsoft.Win32.OpenFileDialog()
+
+        PrintBrowser.Filter = "G-Code Files |(*.gcode)"
+        PrintBrowser.ShowDialog()
+        txt3dFile.Text = PrintBrowser.FileName
+    End Sub
 End Class

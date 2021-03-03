@@ -140,9 +140,30 @@
                         </StackPanel>
                     </Viewbox>
                 </TabItem.Header>
-                <Button x:Name="btn3d" Content="Select Print" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="3d Print Selection" HorizontalAlignment="Left">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="File Name:"/>
+                            <TextBox x:Name="txt3dFile" Text="" Grid.Row="1"/>
+                            <Button Content="..." HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="Button_Click"/>
+                            <Button x:Name="btn3d" Content="Start Print" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2"/>
 
-
+                        </Grid>
+                    </GroupBox>
+                </Grid>
             </TabItem>
 
             <TabItem>
