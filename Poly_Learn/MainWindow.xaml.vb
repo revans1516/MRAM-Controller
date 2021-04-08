@@ -857,15 +857,75 @@ Class MainWindow
         If Razzle_Dazzle IsNot Nothing Then Razzle_Dazzle.Rapid.Stop(RapidDomain.StopMode.Immediate)
     End Sub
 
-    Private Sub btn3d_Click() Handles btn3d.Click
 
-    End Sub
-
-    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub Button_Click()
         Dim PrintBrowser As New Microsoft.Win32.OpenFileDialog()
 
-        PrintBrowser.Filter = "G-Code Files |(*.gcode)"
+        PrintBrowser.Filter = "G-Code Files |*.gcode"
         PrintBrowser.ShowDialog()
         txt3dFile.Text = PrintBrowser.FileName
+    End Sub
+
+    Private Sub btn3d_Click(sender As Object, e As RoutedEventArgs) Handles btn3d.Click
+        If FileIO.FileSystem.FileExists(txt3dFile.Text) Then
+            CreateModFiles()
+        Else
+            MessageBox.Show("No file selected")
+        End If
+    End Sub
+
+
+    Private Sub CreateModFiles()
+
+        Dim FileScannerTrd As New Threading.Thread(
+            Sub()
+
+
+
+                Dim fileReader As System.IO.StreamReader
+                Dim CurrentLine As String = Nothing
+                Dim LineCount As Integer = 0
+                Dim Location As New System.Numerics.Vector3(0)
+                Dim CurrentData As String
+                Dispatcher.Invoke(
+                Sub()
+                    fileReader = My.Computer.FileSystem.OpenTextFileReader(txt3dFile.Text)
+                End Sub)
+
+
+                While (Not fileReader.EndOfStream)
+                    CurrentLine = fileReader.ReadLine()
+                    If CurrentLine <> "" AndAlso Not CurrentLine(0) = ";" Then
+                        If CurrentLine.StartsWith("G1") Then
+                            Dim xindex As Integer = 0
+                            xindex = CurrentLine.IndexOf("X")
+                            If xindex > 0 Then
+                                CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
+                                Double.TryParse(CurrentData, Location.X)
+                            End If
+
+                            xindex = CurrentLine.IndexOf("Y")
+                            If xindex > 0 Then
+                                CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
+                                Double.TryParse(CurrentData, Location.Y)
+                            End If
+
+                            xindex = CurrentLine.IndexOf("Z")
+                            If xindex > 0 Then
+                                CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
+                                Double.TryParse(CurrentData, Location.Z)
+                            End If
+
+                            'MessageBox.Show("X:" & Location.X & vbCrLf & "Y:" & Location.Y & vbCrLf & "Z:" & Location.Z)
+
+                        End If
+
+
+
+
+                    End If
+                End While
+            End Sub)
+        FileScannerTrd.Start()
     End Sub
 End Class

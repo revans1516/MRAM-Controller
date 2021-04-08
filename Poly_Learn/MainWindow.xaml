@@ -158,8 +158,8 @@
                             </Grid.RowDefinitions>
                             <TextBlock Text="File Name:"/>
                             <TextBox x:Name="txt3dFile" Text="" Grid.Row="1"/>
-                            <Button Content="..." HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="Button_Click"/>
-                            <Button x:Name="btn3d" Content="Start Print" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2"/>
+                            <Button Content="..." HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="Button_Click" VerticalAlignment="Top"/>
+                            <Button x:Name="btn3d" Content="Start Print" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
