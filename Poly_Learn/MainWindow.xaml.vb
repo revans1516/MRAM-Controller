@@ -894,6 +894,11 @@ Class MainWindow
 
 
                 While (Not fileReader.EndOfStream)
+
+                    If LineCount > 1000 Then
+
+                    End If
+
                     CurrentLine = fileReader.ReadLine()
                     If CurrentLine <> "" AndAlso Not CurrentLine(0) = ";" Then
                         If CurrentLine.StartsWith("G1") Then
