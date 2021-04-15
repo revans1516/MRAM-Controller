@@ -7,7 +7,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MRAM Demo Program", "Poly_L
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PolyLib", "PolyLib\PolyLib.vbproj", "{33B53394-8BA1-4C93-A74C-A45C7D28FD8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EGM_6_10", "..\EGMSol\EGM_6_10\EGM_6_10.csproj", "{7D6F5464-D218-4ACE-AC1A-A89BAE75A1A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EGM_6_10", "EGM_6_10\EGM_6_10.csproj", "{7D6F5464-D218-4ACE-AC1A-A89BAE75A1A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
