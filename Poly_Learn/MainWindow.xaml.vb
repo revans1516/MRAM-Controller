@@ -11,6 +11,9 @@ Class MainWindow
     Dim Ping_Prev As Robot_Status = Robot_Status.Disconnected
     Dim Tick_Prev As Robot_Status = Robot_Status.Disconnected
     Dim Razz_Prev As Robot_Status = Robot_Status.Disconnected
+    Const PingIP As String = "127.0.0.1"
+    Const TickIP As String = "127.0.0.1"
+    Const RazzIP As String = "127.0.0.1"
 #End Region
 
 #Region "UI Variables"
@@ -161,6 +164,9 @@ Class MainWindow
 
     Private Sub testbtn() Handles btnTest.Click
         MessageBox.Show("STOP!!!! WHO TOLD YOU YOU COULD TOUCH THIS, IT MIGHT BREAK THINGS!")
+        PolyWorks = New PolyLib.PolyWorks_Class()
+        PolyWorks.Create_Point({Ping_pos.X, Ping_pos.Y, Ping_pos.Z})
+        PolyWorks.Create_Point({Pong_pos.X, Pong_pos.Y, Pong_pos.Z})
     End Sub
 
 #End Region
@@ -177,7 +183,7 @@ Class MainWindow
             Log_Tick()
             Log_Razz()
 
-            If Ping_Pong Is Nothing OrElse Not Ping_Pong.Connected Then ConnectToRobot(Ping_Pong, controllerIP:="172.19.209.18")
+            If Ping_Pong Is Nothing OrElse Not Ping_Pong.Connected Then ConnectToRobot(Ping_Pong, controllerIP:=PingIP)
 
             Select Case Robot_Check(Ping_Pong)
                 Case 1
@@ -213,7 +219,7 @@ Class MainWindow
             End Select
 
 
-            If Tick_Tock Is Nothing OrElse Not Tick_Tock.Connected Then ConnectToRobot(Tick_Tock, controllerIP:="172.19.209.22")
+            If Tick_Tock Is Nothing OrElse Not Tick_Tock.Connected Then ConnectToRobot(Tick_Tock, controllerIP:=TickIP)
 
             Select Case Robot_Check(Tick_Tock)
                 Case 1
@@ -249,7 +255,7 @@ Class MainWindow
             End Select
 
 
-            If Razzle_Dazzle Is Nothing OrElse Not Razzle_Dazzle.Connected Then ConnectToRobot(Razzle_Dazzle, controllerIP:="172.19.209.19")
+            If Razzle_Dazzle Is Nothing OrElse Not Razzle_Dazzle.Connected Then ConnectToRobot(Razzle_Dazzle, controllerIP:=RazzIP)
 
             Select Case Robot_Check(Razzle_Dazzle)
                 Case 1
@@ -570,6 +576,31 @@ Class MainWindow
         Razzle_Master.Release()
     End Sub
 
+    Private Sub Poly_Demo()
+        'Dim Ping_Master As Mastership = Mastership.Request(Ping_Pong)
+        'Dim Tick_Master As Mastership = Mastership.Request(Tick_Tock)
+        'Dim Razzle_Master As Mastership = Mastership.Request(Razzle_Dazzle)
+        Ping_pos = Ping_Pong.Rapid.GetTask("T_ROB1").GetRobTarget("tool0", "wobj0").Trans
+        Pong_pos = Ping_Pong.Rapid.GetTask("T_ROB2").GetRobTarget("tool0", "wobj0").Trans
+        Tick_pos = Tick_Tock.Rapid.GetTask("T_ROB1").GetRobTarget("tool0", "wobj0").Trans
+        Tock_pos = Tick_Tock.Rapid.GetTask("T_ROB2").GetRobTarget("tool0", "wobj0").Trans
+        Razz_pos = Razzle_Dazzle.Rapid.GetTask("T_ROB1").GetRobTarget("tool0", "wobj0").Trans
+        Dazz_pos = Razzle_Dazzle.Rapid.GetTask("T_ROB2").GetRobTarget("tool0", "wobj0").Trans
+
+
+
+        PolyWorks = New PolyLib.PolyWorks_Class()
+        PolyWorks.Create_Point({Ping_pos.X, Ping_pos.Y, Ping_pos.Z})
+        PolyWorks.Create_Point({Pong_pos.X, Pong_pos.Y, Pong_pos.Z})
+        'PolyWorks.Create_Point({Tick_pos.X, Tick_pos.Y, Tick_pos.Z})
+
+        'PolyWorks.Create_Point({Tock_pos.X, Tock_pos.Y, Tock_pos.Z})
+        'PolyWorks.Create_Point({Razz_pos.X, Razz_pos.Y, Razz_pos.Z})
+        'PolyWorks.Create_Point({Dazz_pos.X, Dazz_pos.Y, Dazz_pos.Z})
+
+        MessageBox.Show("Program complete")
+    End Sub
+
     Private Sub Program() Handles btnStart.Click
         Select Case cmbProgram.SelectedIndex
             Case 0
@@ -868,25 +899,29 @@ Class MainWindow
 
     Private Sub btn3d_Click(sender As Object, e As RoutedEventArgs) Handles btn3d.Click
         If FileIO.FileSystem.FileExists(txt3dFile.Text) Then
-            CreateModFiles()
+            PrintModel()
         Else
             MessageBox.Show("No file selected")
         End If
     End Sub
 
 
-    Private Sub CreateModFiles()
+    Private Sub PrintModel()
+
 
         Dim FileScannerTrd As New Threading.Thread(
             Sub()
-
-
-
                 Dim fileReader As System.IO.StreamReader
                 Dim CurrentLine As String = Nothing
                 Dim LineCount As Integer = 0
-                Dim Location As New System.Numerics.Vector3(0)
+                Dim NextLocation As New System.Numerics.Vector3(0)
+                Dim PreviousLocation As New System.Numerics.Vector3(0)
                 Dim CurrentData As String
+                Dim PreviousSpeed As Double
+                Dim NextSpeed As Double
+
+
+
                 Dispatcher.Invoke(
                 Sub()
                     fileReader = My.Computer.FileSystem.OpenTextFileReader(txt3dFile.Text)
@@ -895,34 +930,41 @@ Class MainWindow
 
                 While (Not fileReader.EndOfStream)
 
-                    If LineCount > 1000 Then
-
-                    End If
-
                     CurrentLine = fileReader.ReadLine()
                     If CurrentLine <> "" AndAlso Not CurrentLine(0) = ";" Then
+
                         If CurrentLine.StartsWith("G1") Then
                             Dim xindex As Integer = 0
                             xindex = CurrentLine.IndexOf("X")
                             If xindex > 0 Then
                                 CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
-                                Double.TryParse(CurrentData, Location.X)
+                                Double.TryParse(CurrentData, NextLocation.X)
                             End If
 
                             xindex = CurrentLine.IndexOf("Y")
                             If xindex > 0 Then
                                 CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
-                                Double.TryParse(CurrentData, Location.Y)
+                                Double.TryParse(CurrentData, NextLocation.Y)
                             End If
 
                             xindex = CurrentLine.IndexOf("Z")
                             If xindex > 0 Then
                                 CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
-                                Double.TryParse(CurrentData, Location.Z)
+                                Double.TryParse(CurrentData, NextLocation.Z)
                             End If
 
-                            'MessageBox.Show("X:" & Location.X & vbCrLf & "Y:" & Location.Y & vbCrLf & "Z:" & Location.Z)
+                            xindex = CurrentLine.IndexOf("F")
+                            If xindex > 0 Then
+                                CurrentData = CurrentLine.Substring(xindex + 1, CurrentLine.IndexOf(" ", xindex) - xindex)
+                                Double.TryParse(CurrentData, PreviousSpeed)
+                                NextSpeed = NextSpeed / 60
+                            End If
 
+
+
+
+                            PreviousLocation = NextLocation
+                            PreviousSpeed = NextSpeed
                         End If
 
 

@@ -81,6 +81,16 @@ Public Class PolyWorks_Class
         PolyIsCmd.CommandExecute(command)
     End Sub
 
+
+    Public Sub Create_Point(Location As Double())
+        Dim command As String = "FEATURE PRIMITIVE POINT CREATE ( "
+        command = command & Location(0).ToString & ", "
+        command = command & Location(1).ToString & ", "
+        command = command & Location(2).ToString & ")"
+        PolyIsCmd.CommandExecute(command)
+    End Sub
+
+
     Public Sub Stop_Scan()
         With PolyIsCmd
             .CommandExecute("DIGITIZE DEVICE LEICA TSCAN_TRACKER SCAN MEASUREMENT STOP")
@@ -94,6 +104,13 @@ Public Class PolyWorks_Class
         PolyIsCmd.CommandExecute("ALIGN COORDINATE_SYSTEM CARTESIAN CREATE FROM_TRANSLATION_ROTATION ( " & Location(0) & "," & Location(1) & "," & Location(2) & "," & Location(3) & "," & Location(4) & "," & Location(5) & ",""ZYX"", """ & Frame_Name & """)")
         PolyIsCmd.CommandExecute("ALIGN COORDINATE_SYSTEM ACTIVE ( """ & Frame_Name & """ )")
     End Sub
+
+    'Public Function Get_Frame() As Double()
+    '    Dim Output() As Double
+    '    PolyIsCmd.
+
+    '    Return Output
+    'End Function
 
     Public Sub Start_AAC()
         PolyIsCmd.CommandExecute("AAC START_APPLICATION")
