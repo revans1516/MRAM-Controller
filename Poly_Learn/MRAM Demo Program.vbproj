@@ -80,6 +80,7 @@
       <HintPath>.\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -205,6 +206,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EGM_6_10\EGM_6_10.csproj">
+      <Project>{7d6f5464-d218-4ace-ac1a-a89bae75a1a3}</Project>
+      <Name>EGM_6_10</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PolyLib\PolyLib.vbproj">
       <Project>{33b53394-8ba1-4c93-a74c-a45c7d28fd8d}</Project>
       <Name>PolyLib</Name>
